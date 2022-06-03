@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "d7926591-bc60-42c9-bd5f-13c44554f2d2",
+		"name": "public semester",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "semester get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Semester group\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].semester_groups[18].title).to.eql(pm.environment.get(\"semester_groups\"));",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 350ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(450);",
+							"});",
+							"",
+							"var schema = {",
+							"    \"items\":{",
+							"        \"type\": \"object\",",
+							"         \"properties\": {",
+							"            \"id\": {\"type\":\"integer\"},",
+							"            \"year\":{\"type\":\"integer\"},",
+							"            \"startDay\":{\"type\":\"string\"},",
+							"            \"currentSemester\":{\"type\":\"boolean\"}",
+							"        },",
+							"       ",
+							"    }",
+							"};",
+							"var jsonData = pm.response.json();",
+							"pm.test('Schema is valid', function () {",
+							"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/public/semesters",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"public",
+						"semesters"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
