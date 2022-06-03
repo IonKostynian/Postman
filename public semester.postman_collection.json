@@ -1,0 +1,17 @@
+{
+	"info": {
+		"_postman_id": "d7926591-bc60-42c9-bd5f-13c44554f2d2",
+		"name": "public semester",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "semester get",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
